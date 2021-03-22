@@ -29,12 +29,12 @@ namespace ChessBoardGUIApp
 
         private void populateGrid()
         {
-            // luo buttonit ja aseta ne panel1
+            // create buttons and add them into panel
             int buttonSize = panel1.Width / myBoard.Size;
-            // tee paneli1 täydelliseksi neliöksi
+            // make panel square
             panel1.Height = panel1.Width;
 
-            // tee nested looppi ja luo buttonit ja aseta ne näytölle
+            // create nested loop och create buttons and show those in screen
             for (int i = 0; i < myBoard.Size; i++)
             {
                 for (int j = 0; j < myBoard.Size; j++)
@@ -44,26 +44,23 @@ namespace ChessBoardGUIApp
                     btnGrid[i, j].Height = buttonSize;
                     btnGrid[i, j].Width = buttonSize;
 
-                    // lisää click event jokaiselle buttonille 
+                    // add clickevent for each button
 
                     btnGrid[i, j].Click += Grid_Button_Click;
 
-                    // lisää button paneeliin
+                    // add buttons to panel
                     panel1.Controls.Add(btnGrid[i, j]);
 
                     btnGrid[i, j].Location = new Point(i * buttonSize, j * buttonSize);
 
                     btnGrid[i, j].Text = i + "|" + j;
                     btnGrid[i, j].Tag = new Point(i, j);
-
-
                 }
             }
         }
 
         private void Grid_Button_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("PAinoit nappia"); 
 
             // get the row and column of the button clicked 
             Button clickedButton = (Button)sender;
@@ -91,10 +88,8 @@ namespace ChessBoardGUIApp
                     else if (myBoard.theGrid[i,j].CurrentlyOccupied == true)
                     {
                         btnGrid[i, j].Text = peliNappula;
-                    }
-                    
+                    }                
                 }
-
             }
             viimeisinNappula = peliNappula;
             btnGrid[currentCell.RowNumber, currentCell.ColumnNumber].Text = viimeisinNappula;
